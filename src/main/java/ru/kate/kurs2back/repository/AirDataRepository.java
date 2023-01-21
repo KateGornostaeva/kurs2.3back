@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import ru.kate.kurs2back.entity.AirData;
 
 import java.util.List;
-
+//для получения данных и бд
 public interface AirDataRepository extends JpaRepository<AirData, Long> {
     
     @Query(nativeQuery = true,

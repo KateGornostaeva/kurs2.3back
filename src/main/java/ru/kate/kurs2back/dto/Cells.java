@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-
+//формат данных с mosdata
 @Data
 @NoArgsConstructor
 public class Cells {

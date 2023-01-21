@@ -10,7 +10,7 @@ import ru.kate.kurs2back.entity.AirData;
 import ru.kate.kurs2back.repository.AirDataRepository;
 
 import java.util.List;
-
+//endpoint для получения данных качества воздуха
 @Slf4j
 @RestController
 @RequestMapping("/data")
@@ -26,12 +26,14 @@ public class AirDataController {
     public ResponseEntity<List<AirData>> getArea(@RequestParam Double lat,
                                                  @RequestParam Double lon,
                                                  @RequestParam Double size) {
-        
+
+        //для вычисление поля для отображения качества воздуха
         double minLat = lat - size / 2;
         double maxLat = lat + size / 2;
         double minLon = lon - size / 2;
         double maxLon = lon + size / 2;
-        
+
+        //получает список объектов из базы данных
         List<AirData> airDataList = repository.findAllInSquare(minLat, maxLat, minLon, maxLon);
         return ResponseEntity.ok(airDataList);
     }

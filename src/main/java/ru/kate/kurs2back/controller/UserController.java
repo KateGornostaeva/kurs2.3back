@@ -13,25 +13,24 @@ import ru.kate.kurs2back.service.ImportData;
 
 import java.util.List;
 
+//endpoint для регистрации и авторизации пользователей
 @Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    
-    private final ImportData importData;
+
     private final UserRepository userRepository;
-    
-    public UserController(ImportData importData, UserRepository userRepository) {
-        this.importData = importData;
+
+    public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    
-    @GetMapping("/register")
+
+    @GetMapping("/registration")
     public ResponseEntity<String> register(@RequestParam String login,
                                            @RequestParam String password,
                                            @RequestParam String name,
                                            @RequestParam String email) {
-        
+        //проверяем что такого логина нет в бд
         if (userRepository.findByLogin(login) == null) {
             User user = new User();
             user.setLogin(login);
@@ -44,20 +43,18 @@ public class UserController {
         }
         return ResponseEntity.ok("Ok");
     }
-    
+
+
     @GetMapping("/login")
     public ResponseEntity<Long> login(@RequestParam String login,
                                       @RequestParam String password) {
+        //ищем пользователя по логину
         User user = userRepository.findByLogin(login);
+        //проверяем пароль
         if (user != null && user.getPassword().equals(password)) {
             return ResponseEntity.ok(user.getId());
         } else {
             return ResponseEntity.badRequest().body(0L);
         }
-    }
-    
-    @GetMapping("/test")
-    public ResponseEntity<List<MosData>> test() {
-        return ResponseEntity.ok(importData.get());
     }
 }

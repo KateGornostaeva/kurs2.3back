@@ -13,7 +13,7 @@ import ru.kate.kurs2back.repository.UserRepository;
 
 import java.time.LocalDate;
 import java.util.Optional;
-
+//endpoint для отправки заявок
 @Slf4j
 @RestController
 @RequestMapping("/handling")
@@ -26,12 +26,12 @@ public class HandlingController {
         this.userRepository = userRepository;
         this.handlingRepository = handlingRepository;
     }
-    
+
     @GetMapping("/send")
     public ResponseEntity<String> register(@RequestParam Long userId,
                                            @RequestParam String message,
                                            @RequestParam String type) {
-        Optional<User> optional = userRepository.findById(userId);
+        Optional<User> optional = userRepository.findById(userId);//проверка пользователя на существование в бд
         if (optional.isPresent()) {
             User user = optional.get();
             Handling handling = new Handling();

@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 import java.time.LocalDate;
-
+//структура данных в бд
 @Data
 @Entity
 @Table(name = "data")

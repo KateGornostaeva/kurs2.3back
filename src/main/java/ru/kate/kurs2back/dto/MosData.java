@@ -3,7 +3,7 @@ package ru.kate.kurs2back.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+//формат данных с mosdata
 @Data
 @NoArgsConstructor
 public class MosData {

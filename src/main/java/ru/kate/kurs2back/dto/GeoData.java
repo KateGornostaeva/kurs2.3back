@@ -4,7 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-
+//формат данных с mosdata
 @Data
 @NoArgsConstructor
 public class GeoData {
