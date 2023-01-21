@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class ImportData {
     
-    private static final String url = "https://apidata.mos.ru/v1/datasets/2457/rows?api_key=4e8b32409a3d3ae780d3cac89581df7c&projection=null&$top=3";
+    private static final String url = "https://apidata.mos.ru/v1/datasets/2457/rows?api_key=4e8b32409a3d3ae780d3cac89581df7c&projection=null";
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
     private final RestTemplate restTemplate = new RestTemplate();
     
