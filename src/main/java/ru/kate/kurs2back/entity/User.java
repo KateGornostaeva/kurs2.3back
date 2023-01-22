@@ -7,21 +7,23 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
+
+import java.util.UUID;
+
 //структура данных в бд
 @Data
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
     
     @Column(unique=true)
     private String login;
     
     private String password;
     private String name;
-    
-    @Column(unique=true)
+
     private String email;
 }

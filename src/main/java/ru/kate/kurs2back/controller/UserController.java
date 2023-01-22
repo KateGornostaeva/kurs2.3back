@@ -46,15 +46,15 @@ public class UserController {
 
 
     @GetMapping("/login")
-    public ResponseEntity<Long> login(@RequestParam String login,
+    public ResponseEntity<User> login(@RequestParam String login,
                                       @RequestParam String password) {
         //ищем пользователя по логину
         User user = userRepository.findByLogin(login);
         //проверяем пароль
         if (user != null && user.getPassword().equals(password)) {
-            return ResponseEntity.ok(user.getId());
+            return ResponseEntity.ok(user);
         } else {
-            return ResponseEntity.badRequest().body(0L);
+            return ResponseEntity.badRequest().build();
         }
     }
 }
