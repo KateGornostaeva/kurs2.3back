@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/registration")
-    public ResponseEntity<String> register(@RequestParam String login,
+    public ResponseEntity<User> register(@RequestParam String login,
                                            @RequestParam String password,
                                            @RequestParam String name,
                                            @RequestParam String email) {
@@ -38,10 +38,10 @@ public class UserController {
             user.setName(name);
             user.setEmail(email);
             userRepository.save(user);
+            return ResponseEntity.ok(user);
         } else {
-            return ResponseEntity.badRequest().body("Login already exist");
+            return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok("Ok");
     }
 
 
@@ -52,6 +52,7 @@ public class UserController {
         User user = userRepository.findByLogin(login);
         //проверяем пароль
         if (user != null && user.getPassword().equals(password)) {
+            user.setPassword(null);
             return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.badRequest().build();

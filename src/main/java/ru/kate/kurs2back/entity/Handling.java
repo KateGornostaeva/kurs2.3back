@@ -18,8 +18,8 @@ import java.util.UUID;
 @Table(name = "handling")
 public class Handling {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     
     @ManyToOne
     @JoinColumn(name="user_id")
