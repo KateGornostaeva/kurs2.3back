@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.kate.kurs2back.entity.AirData;
 import ru.kate.kurs2back.repository.AirDataRepository;
+import ru.kate.kurs2back.service.ImportData;
 
 import java.util.List;
 //endpoint для получения данных качества воздуха
@@ -17,9 +18,11 @@ import java.util.List;
 public class AirDataController {
     
     private final AirDataRepository repository;
+    private final ImportData importData;
     
-    public AirDataController(AirDataRepository repository) {
+    public AirDataController(AirDataRepository repository, ImportData importData) {
         this.repository = repository;
+        this.importData = importData;
     }
     
     @GetMapping("/area")
@@ -36,5 +39,10 @@ public class AirDataController {
         //получает список объектов из базы данных
         List<AirData> airDataList = repository.findAllInSquare(minLat, maxLat, minLon, maxLon);
         return ResponseEntity.ok(airDataList);
+    }
+
+    @GetMapping("/update")
+    public ResponseEntity update(){
+        return ResponseEntity.ok(importData.get());
     }
 }
